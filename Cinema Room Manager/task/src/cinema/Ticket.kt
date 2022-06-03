@@ -23,9 +23,18 @@ object Ticket {
         val row = scanner.nextInt()
         println("Enter a seat number in that row:")
         val seat = scanner.nextInt()
-        val price = ticketPrice(row, room)
-        println("\nTicket price: $$price")
-        room.reserveSeat(row, seat)
-        print(room)
+        if (row > room.rows || seat > room.seats) {
+            println("\nWrong input!")
+            reserveTicket(room)
+        } else {
+            if (room.getRoom()[row][seat] == "B") {
+                println("\nThat ticket has already been purchased!")
+                reserveTicket(room)
+            } else {
+                val price = ticketPrice(row, room)
+                println("\nTicket price: $$price")
+                room.reserveSeat(row, seat)
+            }
+        }
     }
 }

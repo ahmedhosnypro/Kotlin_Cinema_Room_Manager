@@ -47,4 +47,9 @@ class Room internal constructor() {
     fun reserveSeat(row: Int, seat: Int) {
         room[row][seat] = "B"
     }
+
+    fun getRoom(): Array<Array<String?>> {
+        return room
+    }
+
 }
