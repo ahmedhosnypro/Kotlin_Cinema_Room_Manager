@@ -297,6 +297,43 @@ files:
         }
     }
   learner_created: false
+- name: src/cinema/Profit.kt
+  visible: true
+  text: |-
+    package cinema
+
+    import java.util.*
+
+    object Profit {
+        fun calculateProfit() {
+            println("Enter the number of rows:")
+            val scanner = Scanner(System.`in`)
+            val rows = scanner.nextInt()
+            println("Enter the number of seats in each row:")
+            val seats = scanner.nextInt()
+            var profit: Int
+            if (rows * seats <= 60) {
+                profit = rows * seats * 10
+            } else {
+                val frontHalf = rows / 2
+                val backHalf = rows - frontHalf
+                profit = frontHalf * seats * 10
+                profit += backHalf * seats * 8
+            }
+            println("Total income:")
+            println("$$profit")
+        }
+    }
+  learner_created: true
+- name: src/cinema/Room.kt
+  visible: true
+  learner_created: true
+- name: src/cinema/Ticket.kt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/138/stages/737/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 03 Jun 2022 06:56:58 UTC
+record: 3

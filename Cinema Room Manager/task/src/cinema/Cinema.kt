@@ -1,12 +1,9 @@
 package cinema
 
-import cinema.Profit.calculateProfit
+import cinema.Ticket.reserveTicket
 
-object Cinema {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val cinemaRoom = CinemaRoom()
-        println(cinemaRoom)
-        calculateProfit()
-    }
+fun main() {
+    val room = Room()
+    println(room)
+    reserveTicket(room)
 }
