@@ -338,6 +338,129 @@ files:
         }
     }
   learner_created: false
+- name: src/cinema/Profit.kt
+  visible: true
+  text: |-
+    package cinema
+
+    import java.util.*
+
+    object Profit {
+        fun calculateProfit() {
+            println("Enter the number of rows:")
+            val scanner = Scanner(System.`in`)
+            val rows = scanner.nextInt()
+            println("Enter the number of seats in each row:")
+            val seats = scanner.nextInt()
+            var profit: Int
+            if (rows * seats <= 60) {
+                profit = rows * seats * 10
+            } else {
+                val frontHalf = rows / 2
+                val backHalf = rows - frontHalf
+                profit = frontHalf * seats * 10
+                profit += backHalf * seats * 8
+            }
+            println("Total income:")
+            println("$$profit")
+        }
+    }
+  learner_created: true
+- name: src/cinema/Ticket.kt
+  visible: true
+  text: |-
+    package cinema
+
+    import java.util.*
+
+    object Ticket {
+        private fun ticketPrice(row: Int, room: Room): Int {
+            val price: Int = if (room.rows * room.seats <= 60) {
+                10
+            } else {
+                val frontHalf = room.rows / 2
+                if (row <= frontHalf) {
+                    10
+                } else {
+                    8
+                }
+            }
+            return price
+        }
+
+        fun reserveTicket(room: Room) {
+            val scanner = Scanner(System.`in`)
+            println("Enter a row number:")
+            val row = scanner.nextInt()
+            println("Enter a seat number in that row:")
+            val seat = scanner.nextInt()
+            val price = ticketPrice(row, room)
+            println("\nTicket price: $$price")
+            room.reserveSeat(row, seat)
+            print(room)
+        }
+    }
+  learner_created: true
+- name: src/cinema/Room.kt
+  visible: true
+  text: |-
+    package cinema
+
+    import java.util.*
+
+    class Room internal constructor() {
+        private var room: Array<Array<String?>>
+        var rows: Int
+        var seats: Int
+
+        init {
+            val scanner = Scanner(System.`in`)
+            println("Enter the number of rows:")
+            val rows = scanner.nextInt()
+            println("Enter the number of seats in each row:")
+            val seats = scanner.nextInt()
+            this.rows = rows
+            this.seats = seats
+            room = Array(rows + 1) { arrayOfNulls(seats + 1) }
+            for (i in 0 until rows + 1) {
+                for (j in 0 until seats + 1) {
+                    if (i == 0 && j == 0) {
+                        room[i][j] = " "
+                    } else if (i == 0) {
+                        room[i][j] = j.toString()
+                    } else if (j == 0) {
+                        room[i][j] = i.toString()
+                    } else room[i][j] = "S"
+                }
+            }
+        }
+
+        override fun toString(): String {
+            val ret = StringBuilder("Cinema:\n")
+            for (strings in room) {
+                for (j in strings.indices) {
+                    if (j == room.size) {
+                        ret.append(strings[j])
+                    } else {
+                        ret.append(strings[j] + " ")
+                    }
+                }
+                ret.append("\n")
+            }
+            return ret.toString()
+        }
+
+        fun reserveSeat(row: Int, seat: Int) {
+            room[row][seat] = "B"
+        }
+    }
+  learner_created: true
+- name: src/cinema/Action.kt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/138/stages/738/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 03 Jun 2022 07:03:36 UTC
+record: 4

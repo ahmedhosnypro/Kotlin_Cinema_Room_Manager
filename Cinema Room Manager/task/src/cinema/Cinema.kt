@@ -1,9 +1,12 @@
 package cinema
 
-import cinema.Ticket.reserveTicket
+import cinema.Action.selectAction
 
 fun main() {
     val room = Room()
-    println(room)
-    reserveTicket(room)
+
+    var toContinue = true
+    while (toContinue) {
+        toContinue = selectAction(room)
+    }
 }
