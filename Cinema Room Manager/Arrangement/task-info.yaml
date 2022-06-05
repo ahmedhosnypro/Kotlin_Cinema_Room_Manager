@@ -77,7 +77,7 @@ files:
 - name: src/cinema/CinemaRoom.kt
   visible: true
   learner_created: true
-feedback_link: https://hyperskill.org/projects/138/stages/735/implement#comment
+feedback_link: https://hyperskill.org/learn/step/11364#comment
 status: Solved
 feedback:
   message: Congratulations!
